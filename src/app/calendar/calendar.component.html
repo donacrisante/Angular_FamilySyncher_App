@@ -1,1 +1,83 @@
-<p>calendar works!</p>
+<div class="sidebar">
+  <h3>Familienmitglieder</h3>
+  <ul>
+    <li *ngFor="let member of familyMembers" [style.color]="member.color">
+      {{ member.name }}
+    </li>
+  </ul>
+</div>
+<div class="calendar-content">
+  <div class="calendar-controls">
+    <div class="styled-select">
+      <select id="viewModeSelect" (change)="onViewModeChange($event)">
+        <option value="day" [selected]="viewMode === 'day'">Tag</option>
+        <option value="week" [selected]="viewMode === 'week'">Woche</option>
+        <option value="month" [selected]="viewMode === 'month'">Monat</option>
+      </select>
+    </div>
+  </div>
+  <div *ngIf="viewMode === 'day'" class="calendar-view day-view">
+    <!-- Tagesansicht -->
+    <h3>
+      <span class="arrow" (click)="previousDay()">&lt;</span>
+      {{ getFormattedDay() }}
+      <span class="arrow" (click)="nextDay()">&gt;</span>
+    </h3>
+    <div class="day-content">
+      <div *ngFor="let appointment of dayAppointments" class="appointment">
+        <div class="appointment-time">{{ appointment.time }}</div>
+        <div class="appointment-description">{{ appointment.description }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="viewMode === 'week'" class="calendar-view week-view">
+    <!-- Wochenansicht -->
+    <h3>
+      <span class="arrow" (click)="previousWeek()">&lt;</span>
+      <!-- Diese Woche -->
+      <span class="week-range">{{ getFormattedWeekRange() }}</span>
+      <span class="arrow" (click)="nextWeek()">&gt;</span>
+    </h3>
+    <div class="week-content">
+      <div class="week-days">
+        <div *ngFor="let day of weekDays" class="week-day">
+          {{ day }}
+        </div>
+      </div>
+      <div class="week-grid">
+        <div
+          *ngFor="let day of currentWeek"
+          class="week-cell"
+          (click)="onDayClick(day)"
+        >
+          <div>{{ day.date }}</div>
+        </div>
+      </div>
+    </div>
+</div>
+
+  <div *ngIf="viewMode === 'month'" class="calendar-view month-view">
+    <!-- Monatsansicht -->
+    <h3>
+      <span class="arrow" (click)="previousMonth()">&lt;</span>
+      {{ monthName }} {{ currentYear }}
+      <span class="arrow" (click)="nextMonth()">&gt;</span>
+    </h3>
+    <div class="week-days">
+      <div *ngFor="let day of weekDays" class="week-day">
+        {{ day }}
+      </div>
+    </div>
+    <div class="calendar-grid">
+      <div
+        class="calendar-cell"
+        *ngFor="let day of daysInMonth"
+        (click)="onDayClick(day)"
+        [class.grayed-out]="!day.belongsToCurrentMonth"
+      >
+        <div>{{ day.date }}</div>
+      </div>
+    </div>
+  </div>
+</div>
