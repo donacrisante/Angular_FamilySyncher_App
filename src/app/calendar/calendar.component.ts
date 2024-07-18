@@ -1,10 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AddTaskDialogComponent } from '../add-task-dialog/add-task-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css',
 })
@@ -19,6 +33,7 @@ export class CalendarComponent implements OnInit {
   ];
 
   viewMode: 'day' | 'week' | 'month' = 'month'; // Standardansicht
+  tasks: any[] = []; // Hinzugefügte Aufgaben
 
   // Variablen für die Monatsansicht
   currentMonth!: number;
@@ -38,6 +53,8 @@ export class CalendarComponent implements OnInit {
     { time: '', description: '' }, // Platzhalter für Tagesansichtstermine
   ];
 
+  constructor(public dialog: MatDialog) {}
+
   ngOnInit() {
     const today = new Date();
     this.currentMonth = today.getMonth(); // Monat von 0 (Januar) bis 11 (Dezember)
@@ -45,6 +62,22 @@ export class CalendarComponent implements OnInit {
     this.currentWeekStartDate = this.getStartOfWeek(today);
     this.selectedDay = today;
     this.updateCalendar();
+  }
+
+  openAddTaskDialog(date: Date): void {
+    const dialogRef = this.dialog.open(AddTaskDialogComponent, {
+
+      data: { date,
+      familyMembers: this.familyMembers
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.tasks.push(result);
+        this.updateCalendar();
+      }
+    });
   }
 
   updateCalendar(): void {
@@ -163,6 +196,7 @@ export class CalendarComponent implements OnInit {
     const selectedDate = new Date(this.currentYear, this.currentMonth, day.date);
     this.selectedDay = selectedDate;
     this.setViewMode('day');
+    this.openAddTaskDialog(selectedDate);
   }
 
   onViewModeChange(event: Event): void {

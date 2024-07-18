@@ -9,16 +9,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
-  tasks: string[] = [
-    'Hunde füttern',
-    'Katzen füttern',
-    'Kaninchen füttern',
-    'Mit dem Hund Gassi gehen',
-    'Müll rausbringen',
-    'Staubsaugen',
-    'Spülmaschine ausräumen',
-    'Pflanzen gießen',
-    'Garten gießen',
-  ];
+
 
 }

@@ -20,7 +20,7 @@
     <!-- Tagesansicht -->
     <h3>
       <span class="arrow" (click)="previousDay()">&lt;</span>
-      {{ getFormattedDay() }}
+      <span class="day-date">{{ getFormattedDay() }}</span>
       <span class="arrow" (click)="nextDay()">&gt;</span>
     </h3>
     <div class="day-content">
@@ -61,7 +61,7 @@
     <!-- Monatsansicht -->
     <h3>
       <span class="arrow" (click)="previousMonth()">&lt;</span>
-      {{ monthName }} {{ currentYear }}
+      <span class="month-year">{{ monthName }} {{ currentYear }}</span>
       <span class="arrow" (click)="nextMonth()">&gt;</span>
     </h3>
     <div class="week-days">

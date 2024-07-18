@@ -1,3 +1,13 @@
+html, body {
+  height: 100%;
+  font-family: monospace; /* Hier die Schriftart setzen */
+}
+
 body {
+  margin: 0;
+}
+
+/* Zusätzlich können Sie eine generelle Regel hinzufügen */
+* {
   font-family: monospace;
 }

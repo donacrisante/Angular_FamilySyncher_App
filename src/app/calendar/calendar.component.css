@@ -1,6 +1,7 @@
 :host {
   display: flex;
   flex-direction: row;
+  font-family: monospace;
 }
 
 .calendar-container {
@@ -14,10 +15,13 @@
   background-color: #f4f4f4;
   border-right: 1px solid #ddd;
   height: calc(100vh - 160px);
+  font-family: monospace;
 }
 
 .sidebar h3 {
   margin-bottom: 10px;
+  font-family: monospace;
+  font-size: 18px;
 }
 
 .sidebar ul {
@@ -54,11 +58,16 @@
   padding: 10px;
   text-align: center;
   font-weight: bold;
+  font-family: monospace;
 }
 
 .calendar-view {
   text-align: center;
   margin-top: 60px;
+}
+
+.calendar-view, .month-view {
+  font-family: monospace;
 }
 
 .calendar-grid {
@@ -74,6 +83,7 @@
   cursor: pointer;
   position: relative;
   height: 100px;
+  font-family: monospace;
 }
 
 .date {
@@ -88,24 +98,25 @@
   flex-direction: column;
 }
 
-/* week-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-} */
-
 .week-cell {
   padding: 20px;
   border: 1px solid #ddd;
   text-align: center;
   cursor: pointer;
   height: 400px;
+  font-family: monospace;
 }
 
 .arrow {
   cursor: pointer;
   margin: 0 10px;
   font-size: 20px;
+  font-family: monospace;
+}
+
+.month-year, .week-range, .day-date {
+  font-family: monospace;
+  font-size: 18px;
 }
 
 .day-content {
@@ -137,6 +148,7 @@
 .styled-select {
   position: relative;
   display: inline-block;
+  font-family: monospace;
 }
 
 .styled-select::after {

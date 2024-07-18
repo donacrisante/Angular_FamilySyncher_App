@@ -6,11 +6,12 @@ import { FamilyMembersComponent } from './family-members/family-members.componen
 import { CalendarComponent } from './calendar/calendar.component';
 import { RouterOutlet } from '@angular/router';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, TasksComponent, FamilyMembersComponent, CalendarComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, TasksComponent, FamilyMembersComponent, CalendarComponent ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

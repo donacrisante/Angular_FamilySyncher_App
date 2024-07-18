@@ -1,0 +1,97 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+h2 {
+  font-family: monospace;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  margin-top: 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden; /* Prevent overflow that causes scrollbars */
+}
+
+.control-row {
+  padding: 10px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center; /* Vertikal zentrieren */
+}
+
+mat-form-field {
+  flex-grow: 1;
+  font-family: monospace;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.task-icon, .calendar-icon, .clock-icon, .person-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 15px;
+  margin-right: 8px; /* Adjust space between the icon and input field */
+}
+
+button {
+  margin-left: 10px;
+  margin-bottom: 0; /* Kein zusätzlicher Abstand am unteren Rand */
+  color: black !important; /* Schriftfarbe schwarz */
+}
+
+.buttons-row {
+  justify-content: flex-end; /* Buttons nach rechts ausrichten */
+  padding-right: 30px; /* Gleicher Abstand wie in .control-row */
+  margin-bottom: 20px;
+}
+
+.checkbox-row {
+  margin-left: 60px;
+}
+
+/* .date-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+} */
+
+/* .date-container img.calendar-icon {
+  margin-right: 16px *//* ; Adjust space between the icon and the date fields */
+/* } */
+
+/* .date-container mat-form-field {
+  width: auto;
+  margin-right: 16px; */ /* Adjust space between the date fields */
+/* } */
+
+.mat-dialog-container {
+  width: 80vw; /* 80% of the viewport width */
+  max-width: 800px; /* Maximum width for larger screens */
+  height: auto;
+  max-height: 90vh; /* Maximum height for larger screens */
+  overflow: hidden; /* Prevent overflow that causes scrollbars */
+}
+
+/* Custom CSS class for the options in the dropdown */
+.monospace-option {
+  font-family: monospace;
+}
+
+.monospace-options .mat-option-text {
+  font-family: monospace;
+}
+

@@ -1,0 +1,107 @@
+<h2>Neue Aufgabe</h2>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <div class="control-row">
+    <img matPrefix src="task-icon.png" alt="Task Icon" class="task-icon" />
+    <mat-form-field>
+      <input
+        matInput
+        formControlName="description"
+        placeholder="Aufgabe"
+        required
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="control-row">
+    <img
+      matPrefix
+      src="calendar-icon.png"
+      alt="Calendar Icon"
+      class="calendar-icon"
+    />
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="startPicker"
+        formControlName="startDate"
+        placeholder="Von"
+        required
+      />
+      <mat-datepicker-toggle matSuffix [for]="startPicker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #startPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="endPicker"
+        formControlName="endDate"
+        placeholder="Bis"
+        required
+      />
+      <mat-datepicker-toggle matSuffix [for]="endPicker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #endPicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="control-row checkbox-row">
+    <mat-checkbox>Ganztägig</mat-checkbox>
+  </div>
+
+  <div class="control-row">
+    <img matPrefix src="clock-icon.png" alt="Clock Icon" class="clock-icon" />
+    <mat-form-field>
+      <input
+        matInput
+        [ngxMatTimepicker]="picker"
+        formControlName="time"
+        placeholder="Uhrzeit"
+        [format]=24
+        required
+      />
+      <mat-icon matSuffix [ngxMatTimepicker]="picker">keyboard_arrow_down</mat-icon>
+      <ngx-mat-timepicker #picker></ngx-mat-timepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="control-row">
+    <img
+      matPrefix
+      src="person-icon.png"
+      alt="Person Icon"
+      class="person-icon"
+    />
+    <mat-form-field>
+      <mat-select
+        formControlName="member"
+        placeholder="Familienmitglied zuweisen"
+        panelClass="monospace-options"
+        required
+      >
+      <mat-option
+          *ngFor="let member of data.familyMembers"
+          [value]="member.name"
+          class="monospace-option"
+        >
+          {{ member.name }}
+        </mat-option>
+        <!-- <mat-option
+          *ngFor="let member of data.familyMembers"
+          [value]="member.name"
+        >
+          {{ member.name }}
+        </mat-option> -->
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="control-row buttons-row">
+    <button mat-raised-button color="primary" type="submit">Hinzufügen</button>
+    <button mat-raised-button (click)="onCancel()" color="primary">
+      Abbrechen
+    </button>
+  </div>
+</form>
